@@ -71,7 +71,7 @@ const CartScreen = ({ navigation, route }) => {
         <Text className="text-black font-extrabold text-3xl">₹326.00</Text>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Success")}
+         onPress={() => navigation.navigate("Success", {item})}
         className="p-5 bg-red-600 rounded-2xl mt-3"
       >
         <Text className="text-white text-center font-bold text-xl">

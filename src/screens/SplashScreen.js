@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
 import { Text, View, Image } from 'react-native';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config/firebase";
+
 
 const SplashScreen = ({ navigation })=>{
    
-    useEffect(()=>{
-        const timer = setTimeout(()=>{
+    useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    setTimeout(() => {
+      if (user) {
+        navigation.replace("Home");
+      } else {
         navigation.replace("Login");
-    }, 2000)
-       return ()=> clearTimeout(timer);
-    }, [])
+      }
+    }, 2000); // 2 sec splash feel
+  });
+
+  return unsubscribe;
+}, []);
     
 
     return(
